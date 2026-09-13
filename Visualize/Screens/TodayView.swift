@@ -14,7 +14,7 @@ struct TodayView: View {
             Theme.background.ignoresSafeArea()
 
             ScrollView(showsIndicators: false) {
-                VStack(alignment: .leading, spacing: Theme.cardSpacing) {
+                LazyVStack(alignment: .leading, spacing: Theme.cardSpacing) {
                     header
                         .padding(.bottom, 6)
 
@@ -63,8 +63,7 @@ struct TodayView: View {
             GradientCard(
                 label: card.label,
                 sentence: "",
-                palette: .ambient,
-                minHeight: 300
+                palette: .ambient
             )
 
         case .ready(let readout):
@@ -73,7 +72,10 @@ struct TodayView: View {
                 sentence: readout.sentence,
                 detail: readout.detail,
                 palette: readout.palette,
-                minHeight: 300
+                // Trial: motion on the resting heart rate card only.
+                drift: card.label == RestingHeartRate.label
+                    ? DriftRhythm(standing: readout.standing)
+                    : nil
             )
 
         case .empty(let sentence, let detail):

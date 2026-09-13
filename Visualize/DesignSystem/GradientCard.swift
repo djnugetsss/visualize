@@ -9,41 +9,45 @@ struct GradientCard: View {
     let sentence: String
     let detail: String?
     let palette: SoftGradientPalette
-    var minHeight: CGFloat = 268
+    /// nil leaves the gradient static.
+    var drift: DriftRhythm?
+    var minHeight: CGFloat = 178
 
     init(
         label: String,
         sentence: String,
         detail: String? = nil,
         palette: SoftGradientPalette,
-        minHeight: CGFloat = 268
+        drift: DriftRhythm? = nil,
+        minHeight: CGFloat = 178
     ) {
         self.label = label
         self.sentence = sentence
         self.detail = detail
         self.palette = palette
+        self.drift = drift
         self.minHeight = minHeight
     }
 
     var body: some View {
         VStack(alignment: .leading, spacing: 0) {
             Text(label)
-                .font(.system(.subheadline, weight: .medium))
+                .font(.system(.footnote, weight: .medium))
                 .foregroundStyle(Theme.onGradientSecondary)
 
-            Spacer(minLength: 48)
+            Spacer(minLength: 26)
 
             Text(sentence)
-                .font(.system(.title, weight: .semibold))
+                .font(.system(.title2, weight: .semibold))
                 .foregroundStyle(Theme.onGradient)
                 .lineSpacing(2)
                 .fixedSize(horizontal: false, vertical: true)
 
             if let detail {
                 Text(detail)
-                    .font(.system(.subheadline, weight: .regular))
+                    .font(.system(.footnote, weight: .regular))
                     .foregroundStyle(Theme.onGradientSecondary)
-                    .padding(.top, 10)
+                    .padding(.top, 6)
                     .fixedSize(horizontal: false, vertical: true)
             }
         }
@@ -51,7 +55,11 @@ struct GradientCard: View {
         .frame(maxWidth: .infinity, minHeight: minHeight, alignment: .topLeading)
         .background {
             ZStack {
-                SoftGradient(palette: palette)
+                if let drift {
+                    DriftingGradient(palette: palette, rhythm: drift)
+                } else {
+                    SoftGradient(palette: palette)
+                }
                 // Holds white type legible over the palest corners. Tuned to be felt,
                 // not seen — anything heavier reads as a scrim and muddies the color.
                 LinearGradient(
@@ -88,10 +96,10 @@ struct QuietCard: View {
     var body: some View {
         VStack(alignment: .leading, spacing: 0) {
             Text(label)
-                .font(.system(.subheadline, weight: .medium))
+                .font(.system(.footnote, weight: .medium))
                 .foregroundStyle(Theme.secondaryText)
 
-            Spacer(minLength: 34)
+            Spacer(minLength: 20)
 
             Text(sentence)
                 .font(.system(.title3, weight: .medium))
@@ -100,15 +108,15 @@ struct QuietCard: View {
 
             if let detail {
                 Text(detail)
-                    .font(.system(.subheadline, weight: .regular))
+                    .font(.system(.footnote, weight: .regular))
                     .foregroundStyle(Theme.secondaryText)
-                    .padding(.top, 8)
+                    .padding(.top, 6)
                     .lineSpacing(2)
                     .fixedSize(horizontal: false, vertical: true)
             }
         }
         .padding(Theme.cardPadding)
-        .frame(maxWidth: .infinity, minHeight: 180, alignment: .topLeading)
+        .frame(maxWidth: .infinity, minHeight: 140, alignment: .topLeading)
         .background(Theme.quietCard)
         .clipShape(RoundedRectangle(cornerRadius: Theme.cardCornerRadius, style: .continuous))
         .softShadow(strength: 0.45)

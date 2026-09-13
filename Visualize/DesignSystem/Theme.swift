@@ -23,10 +23,11 @@ enum Theme {
     // MARK: Geometry
 
     static let cardCornerRadius: CGFloat = 30
-    static let cardPadding: CGFloat = 28
+    static let cardPadding: CGFloat = 22
     static let screenPadding: CGFloat = 22
-    /// Cards breathe. Don't tighten this.
-    static let cardSpacing: CGFloat = 20
+    /// Cards still breathe, but the Today feed is a glance: five of these should
+    /// be a short scroll, not five screens.
+    static let cardSpacing: CGFloat = 14
 }
 
 // MARK: - Soft depth

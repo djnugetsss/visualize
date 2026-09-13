@@ -83,17 +83,25 @@ extension SoftGradientPalette {
         ]
     )
 
-    /// Typical for them — soft neutral warmth, sand and pale amber.
+    /// Typical for them — warm sand easing into a calm, desaturated slate.
+    ///
+    /// This is the palette a steady person sees most days, so it travels like the
+    /// others rather than sitting in one hue. The journey runs warm-to-neutral
+    /// instead of warm-to-colourful: no green (that’s aboveBaseline) and none of
+    /// belowBaseline’s saturated amber, so it still reads as "nothing to note".
+    /// Holding it all in one orange family is what made it brown in dark mode.
     static let typical = SoftGradientPalette(
         base: [
-            .adaptive(light: 0xFBEED4, dark: 0x453626),
-            .adaptive(light: 0xF0D3A4, dark: 0x3A2C1D),
-            .adaptive(light: 0xDDA87A, dark: 0x281D14)
+            .adaptive(light: 0xF1DCBA, dark: 0x5C4B36),
+            .adaptive(light: 0xE9D1A8, dark: 0x5A4C3A),
+            .adaptive(light: 0xD4C9B6, dark: 0x4A4A47),
+            .adaptive(light: 0xB2B8B7, dark: 0x374450),
+            .adaptive(light: 0x8294A4, dark: 0x263440)
         ],
         blobs: [
-            .init(color: .adaptive(light: 0xFAE3C4, dark: 0x7F5B39), center: .init(x: 0.06, y: 0.04), radius: 0.50, opacity: 0.92),
-            .init(color: .adaptive(light: 0xEFC48C, dark: 0x8A6034), center: .init(x: 0.42, y: 0.48), radius: 0.50, opacity: 0.78),
-            .init(color: .adaptive(light: 0xD79A66, dark: 0x6B4526), center: .init(x: 0.92, y: 0.92), radius: 0.56, opacity: 0.80)
+            .init(color: .adaptive(light: 0xF3DAB2, dark: 0x6F5A43), center: .init(x: 0.10, y: 0.05), radius: 0.58, opacity: 0.95),
+            .init(color: .adaptive(light: 0xE0C79A, dark: 0x5E5546), center: .init(x: 0.40, y: 0.48), radius: 0.50, opacity: 0.75),
+            .init(color: .adaptive(light: 0x91A3B2, dark: 0x3A5666), center: .init(x: 0.94, y: 0.94), radius: 0.58, opacity: 0.88)
         ]
     )
 
